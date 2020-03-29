@@ -2,7 +2,7 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Linking, ScrollView } from 'react-native';
 import * as MailComposer from 'expo-mail-composer';
 
 import logoImg from '../../assets/logo.png';
@@ -48,44 +48,59 @@ export default function Detail(){
 
             </View>
 
-            <View style={styles.incident}>
+            <ScrollView showsVerticalScrollIndicator={false}>
 
-                <Text style={[styles.incidentProperty, { marginTop: 0 }]}>ONG:</Text>
-                <Text style={styles.incidentValue}>{incident.name} de {incident.city}/{incident.uf}</Text>
+                <View style={styles.incident}>
 
-                <Text style={styles.incidentProperty}>CASO:</Text>
-                <Text style={styles.incidentValue}>{incident.title}</Text>
+                    <View style={styles.doubleProperty}>
+                        
+                        <View>
+                            <Text style={[styles.incidentProperty, { marginTop: 0 }]}>CASO:</Text>
+                            <Text style={styles.incidentValue}>{incident.title}</Text>
+                        </View>
 
-                <Text style={styles.incidentProperty}>VALOR:</Text>
-                <Text style={styles.incidentValue}>
-                    {Intl.NumberFormat('pt-BR', { 
-                    style: 'currency', 
-                    currency: 'BRL'
-                    }).format(incident.value)}
-                </Text>
+                        <View>
+                            <Text style={[styles.incidentProperty, { marginTop: 0 }]}>ONG:</Text>
+                            <Text style={styles.incidentValue}>{incident.name} de {incident.city}/{incident.uf}</Text>
+                        </View>
 
-            </View>
+                    </View>
 
-            <View style={styles.contactBox}>
+                    <Text style={styles.incidentProperty}>DESCRIÇÃO:</Text>
+                    <Text style={styles.incidentValue}>{incident.description}</Text>
 
-                <Text style={styles.heroTitle}>Salva o dia!</Text>
-                <Text style={styles.heroTitle}>Seja o herói desse caso.</Text>
-
-                <Text style={styles.heroDescription}>Entre em contato:</Text>
-                
-                <View style={styles.actions}>
-
-                    <TouchableOpacity style={styles.action} onPress={sendWhatsApp}>
-                        <Text style={styles.actionText}>WhasApp</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.action} onPress={sendMail}>
-                        <Text style={styles.actionText}>E-mail</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.incidentProperty}>VALOR:</Text>
+                    <Text style={styles.incidentValue}>
+                        {Intl.NumberFormat('pt-BR', { 
+                        style: 'currency', 
+                        currency: 'BRL'
+                        }).format(incident.value)} reais
+                    </Text>
 
                 </View>
 
-            </View>
+                <View style={styles.contactBox}>
+
+                    <Text style={styles.heroTitle}>Salva o dia!</Text>
+                    <Text style={styles.heroTitle}>Seja o herói desse caso.</Text>
+
+                    <Text style={styles.heroDescription}>Entre em contato:</Text>
+                    
+                    <View style={styles.actions}>
+
+                        <TouchableOpacity style={styles.action} onPress={sendWhatsApp}>
+                            <Text style={styles.actionText}>WhasApp</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.action} onPress={sendMail}>
+                            <Text style={styles.actionText}>E-mail</Text>
+                        </TouchableOpacity>
+
+                    </View>
+
+                </View>
+            
+            </ScrollView>
 
         </View>
 

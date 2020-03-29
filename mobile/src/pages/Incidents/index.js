@@ -68,7 +68,7 @@ export default function Incidents(){
 
             <FlatList 
                 data={incidents}
-                showsVerticalScrollIndicator={false}
+                showsVerticalScrollIndicator={true}
                 style={styles.incidentList}
                 onEndReached={loadIncidents}
                 onEndReachedThreshold={0.2}
@@ -88,7 +88,7 @@ export default function Incidents(){
                             {Intl.NumberFormat('pt-BR', { 
                             style: 'currency', 
                             currency: 'BRL'
-                            }).format(incident.value)}
+                            }).format(incident.value)} reais
                         </Text>
 
                         <TouchableOpacity
